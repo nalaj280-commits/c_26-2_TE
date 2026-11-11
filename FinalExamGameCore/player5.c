@@ -7,7 +7,7 @@ Command player5_choose_command(const char *state_path)
     Snapshot s;
     FILE *file = fopen(state_path, "r");
     const int dx[4] = {0, 0, -1, 1}, dy[4] = {-1, 1, 0, 0};
-    int d, i, j, x, y, ok;
+    int d, i, j, x, y, ok;   
     if (!file) return COMMAND_UP;
     ok = snapshot_read(file, &s);
     fclose(file); /* Also close the file on malformed input. */
