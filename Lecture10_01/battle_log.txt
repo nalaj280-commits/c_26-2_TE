@@ -1,3 +1,0 @@
-[ATTACK] Hero dealt 10 damage to Slime.
-[ATTACK] Hero dealt 10 damage to Slime.
-[LOOT] Hero obtained 20 gold.
