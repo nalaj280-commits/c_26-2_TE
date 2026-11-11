@@ -1,3 +1,0 @@
-Slime 30 5 10
-Goblin 60 12 25
-Dragon 500 40 200
