@@ -154,6 +154,8 @@
     <ClCompile Include="player5.c" />
     <ClInclude Include="game.h" />
     <ClInclude Include="player_api.h" />
+    <ClInclude Include="strategy.h" />
+    <ClInclude Include="tactics.h" />
     <ClInclude Include="diagnostics.h" />
     <None Include="dungeonmap.dat" /><None Include="Rule.txt" />
   </ItemGroup>
