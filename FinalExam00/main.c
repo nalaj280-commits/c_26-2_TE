@@ -41,6 +41,27 @@ int main(int argc, char **argv)
     if (!slash) return 1;
     *slash = '\0';
     snprintf(default_map, sizeof(default_map), "%s\\dungeonmap.dat", base);
+    /* Build output lives in bin/<platform>/<configuration>. Read the editable
+       project map directly, even when Visual Studio skips an up-to-date build. */
+    {
+        char project[MAX_PATH], source_map[MAX_PATH], *end;
+        int level;
+        DWORD attributes;
+        snprintf(project, sizeof(project), "%s", base);
+        for (level = 0; level < 2; ++level) {
+            end = strrchr(project, '\\');
+            if (!end) break;
+            *end = '\0';
+        }
+        end = strrchr(project, '\\');
+        if (level == 2 && end && _stricmp(end + 1, "bin") == 0) {
+            *end = '\0';
+            snprintf(source_map, sizeof(source_map), "%s\\dungeonmap.dat", project);
+            attributes = GetFileAttributesA(source_map);
+            if (attributes != INVALID_FILE_ATTRIBUTES && !(attributes & FILE_ATTRIBUTE_DIRECTORY))
+                snprintf(default_map, sizeof(default_map), "%s", source_map);
+        }
+    }
     map_path = default_map;
     for (i = 1; i < argc; ++i) {
         if (strcmp(argv[i], "--fast") == 0) delay = 0;
